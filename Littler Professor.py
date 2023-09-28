@@ -66,7 +66,7 @@ def dificuldade():
             print('\nFinalizando o programa. Encerrando...')
             #   Forçar o encerramento do programa
             sys.exit()
-
+        return usuario
 
 def calculos():
     """
@@ -86,7 +86,10 @@ def calculos():
     # Armazena o valor de divisao dos números
     divisao = valor_1 / valor_2
 
-    return valor_1, valor_2, soma, subtracao, multiplicacao, divisao
+    #   Armazenar cada variável em um dicionário para retornar quando necessário
+    #return {"valor_1": valor_1, "valor_2": valor_2, "soma": soma, "subtracao": subtracao, "multiplicacao":multiplicacao, "divisao":divisao}
+    return valor_1,valor_2,soma,subtracao,multiplicacao,divisao
+
 
 def tentativas_usuario():
     """
@@ -101,7 +104,7 @@ def tentativas_usuario():
     #   Loop para rodar 10 vezes
     for j in range(1,11):
         #   Reaproveitando as variáveis de questão, a cada interação, armazena conforme a resposta.
-        acertos, erros = questao()
+        acertos, erros = questao_soma()
         #   Usuário acertando a resposta, acrescenta +1 para corretas
         corretas += acertos
         #   Usuário errando a resposta, acrescenta +1 para erradas
@@ -110,13 +113,13 @@ def tentativas_usuario():
         if j == 10:
             print(f'Você teve {corretas} respostas certas.\n E {erradas} respostas erradas')
 
-def questao():
+def questao_soma():
     """
     Essa linha de código verifica se o calculo feito pelo usuário está correto, assim como realiza
     tratativa de erros
     """
     # Obter os valores armazenados nas váriaveis da função calculos
-    valor_1, valor_2, soma, subtracao, multiplicacao, divisao = calculos()
+    valor_1,valor_2,soma,subtracao,multiplicacao,divisao = calculos()
     #   A cara interação, o valor será acrescentado +1
     acertos = 0
     #   A cara interação, o valor será acrescentado +1
@@ -151,6 +154,74 @@ def questao():
             sys.exit()
     #   Retorna os valores para cada chamada de função em partes diferentes do código
     return acertos, erros
+
+def nivel_2():
+    """
+
+    :return:
+    """
+    # Obter os valores armazenados nas váriaveis da função calculos
+    valor_1,valor_2,soma,subtracao,multiplicacao,divisao = calculos()
+    #   A cara interação, o valor será acrescentado +1
+    acertos = 0
+    #   A cara interação, o valor será acrescentado +1
+    erros = 0
+    #   Enquanto a condição não for resolvida, continuará rodando
+    while True:
+        try:
+            # Armazena a resposta do usuário
+            calculo = int(input(f'Faça o cálculo de {valor_1} + {valor_2} : '))
+            calculo2 = int(input(f'Faça o cálculo de {valor_1} - {valor_2} : '))
+            # Aqui ele irá apenas
+            for j in range(1,11,2):
+                #   Se a resposta dele for igual a variável de soma de calculos()
+                if calculo == soma:
+                    #   Mensagem de acerto é retornada, acertos é acrescentado +1 e vai para a próxima pergunta
+                    print('Você acertou, parabéns!')
+                    acertos += 1
+                    #   Encerrar essa questão
+                    break
+                #   Se a resposta estiver incorreta
+            else:
+                #   Retorna a mensagem
+                print('Resposta incorreta!')
+                #   Acrescenta +1 na variável erros
+                erros += 1
+                #   Encerra essa questão
+
+            for j in range(2,10,2):
+                    if calculo2 == subtracao:
+                        print('Você acertou. Parabéns!')
+                        acertos += 1
+                        break
+            else:
+                print('Resposta incorreta!')
+                erros += 1
+                break
+            #   Caso o usuário coloque algum valor não numérico, apresenta o erro e permanece na questão
+        except ValueError:
+            print('Esses não são valores numéricos. Tente novamente!')
+        #   Se o usuário desejar encerrar o programa, apresenta a mensagem
+        except KeyboardInterrupt:
+            print('\nPrograma finalizado. Encerrando...')
+            #   Função para forçar a saida do programa
+            sys.exit()
+        #   Retorna os valores para cada chamada de função em partes diferentes do código
+        return acertos, erros
+
+
+'''def dificuldade_1():
+    """
+    Esse código irá funcionar quando o usuário selecionar a dificuldade 1 - Fácil
+    :return:
+    """
+    usuario = dificuldade()
+    valor_1,valor_2,soma = calculos()
+    while True():
+        try:
+            if usuario == 1:
+                questao()'''
+nivel_2()
 
 # Chama a função e realiza a apresentação do programa
 apresentacao()
