@@ -63,9 +63,7 @@ def dificuldade():
             print('São permitidos apenas números de 1 até 3, tente novamente')
         except KeyboardInterrupt:
             #   Encerramento brusco do programa
-            print('\nFinalizando o programa. Encerrando...')
-            #   Forçar o encerramento do programa
-            sys.exit()
+            sys.exit('\nFinalizando o programa. Encerrando...')
 
 
 def calculos():
@@ -146,9 +144,7 @@ def questao():
             print('Esses não são valores numéricos. Tente novamente!')
         #   Se o usuário desejar encerrar o programa, apresenta a mensagem
         except KeyboardInterrupt:
-            print('\nPrograma finalizado. Encerrando...')
-            #   Função para forçar a saida do programa
-            sys.exit()
+            sys.exit('\nPrograma finalizado. Encerrando...')
     #   Retorna os valores para cada chamada de função em partes diferentes do código
     return acertos, erros
 
